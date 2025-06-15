@@ -1,7 +1,3 @@
-"""
-Meu primeiro applicativo com Beeware
-"""
-
 import toga
 from toga.style import Pack
 from toga.style.pack import COLUMN, ROW
@@ -27,25 +23,39 @@ class MeuApp(toga.App):
             style=Pack(padding=5)
         )
 
+        button2 = toga.Button("Click me", on_press=self.my_callback)
+
+        icon_button = toga.Button(icon=toga.Icon("resources/my_icon"), on_press=self.my_callback)
+
+        current_date = toga.DateInput()
+
+        textbox = toga.MultilineTextInput()
+        textbox.value = "FELIZ DE APRENDER BEEWARE !"
+
+        password = toga.PasswordInput()
+
         main_box.add(name_box)
         main_box.add(button)
+        main_box.add(button2)
+        main_box.add(icon_button)
+        main_box.add(current_date)
+        main_box.add(textbox)
+        main_box.add(password)
+
+
+
 
         self.main_window = toga.MainWindow(title=self.formal_name)
         self.main_window.content = main_box
         self.main_window.show()
 
     def say_hello(self, widget):
-        name = self.name_input.value.strip()
-        if not name:
-            self.main_window.info_dialog(
-                "Erro",
-                "Por favor, digite seu nome!"
-            )
-        else:
-            self.main_window.info_dialog(
-                "Saudação",
-                f"Olá, {name}!"
-            )
+        print(f"Hello, {self.name_input.value}")
+
+    def my_callback(self, widget):
+        # handle event
+        pass
+
 
 
 def main():
